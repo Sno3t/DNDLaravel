@@ -14,6 +14,7 @@ class RegisterController extends BaseController
     /**
      * Register api
      *
+     * @param Request $request
      * @return JsonResponse
      */
     public function register(Request $request): JsonResponse {
@@ -41,10 +42,11 @@ class RegisterController extends BaseController
     /**
      * Login api
      *
+     * @param Request $request
      * @return JsonResponse
      */
 
-    public function login(Request $request) {
+    public function login(Request $request): JsonResponse {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
